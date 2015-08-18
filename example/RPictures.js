@@ -4,11 +4,9 @@ function RPictures(element, options){
 	var _self = this;
 
 	this.options = options || {};
+
+	this.type = this.options.type || 'width';//展现的方式
 	this.element = document.getElementById(element);//活动UL的父级DIV
-	this.init();
-	this.initList();
-}
-RPictures.prototype.init = function(){
 	this.eleList = this.element.getElementsByTagName('li');//活动UL里的所有li
 
 	this.eleStyle = this.element.style;//父级div的style
@@ -29,12 +27,66 @@ RPictures.prototype.init = function(){
 	this.eleStyle.width = this.divWidth+'px';
 	this.eleStyle.height = this.divHeight+'px';
 	this.eleStyle.overflow = 'hidden';
+	this.eleStyle.position = 'relative';
 
 	this.element.getElementsByTagName('ul')[0].style.listStyle = 'none';
 	this.element.getElementsByTagName('ul')[0].style.margin = 0;
 	this.element.getElementsByTagName('ul')[0].style.padding = 0;
+	this.element.getElementsByTagName('ul')[0].style.width = this.divWidth+'px';
+	this.element.getElementsByTagName('ul')[0].style.height = this.divHeight+'px';
+	this.element.getElementsByTagName('ul')[0].style.overflow = 'hidden';
+	this.element.getElementsByTagName('ul')[0].style.position = 'relative';
+	if(this.type == 'width'){
+		this.initWidth();
+	}else{
+		this.initLeft();
+	}
 }
-RPictures.prototype.initList = function(){
+RPictures.prototype.initLeft = function(){
+	for(var i=0; i<this.eleList.length; i++){
+		var elel = this.eleList[i];
+		elel.style.position = 'absolute';
+		elel.style.top = 0;
+		elel.style.left = (this.normalWidth+this.borderWidth)*i+'px';
+		elel.style.borderLeft = this.borderWidth+'px solid #fff';
+		elel.style.transition = 'left '+this.transitionTime+'s';
+		elel.style['-moz-transition'] = 'left '+this.transitionTime+'s';
+		elel.style['-webkit-transition'] = 'left '+this.transitionTime+'s';
+		elel.style['-o-transition'] = 'left '+this.transitionTime+'s';
+
+		this.mouseoverfun = this.mouseoverFunLeft.bind(this);
+		elel.addEventListener ? elel.addEventListener("mouseover",this.mouseoverfun , false) : elel.attachEvent("onmouseover",this.mouseoverfun);
+
+		this.mouseoutfun = this.mouseoutFunLeft.bind(this);
+		elel.addEventListener ? elel.addEventListener("mouseout",this.mouseoutfun, false) : elel.attachEvent("onmouseout",this.mouseoutfun);
+	}
+}
+RPictures.prototype.mouseoverFunLeft = function(e){
+	var ele = e.target || e.srcElement;
+	while(ele.tagName != 'LI' && ele.tagName != 'BODY'){
+		ele = ele.parentNode;
+	}
+	var flag = false;
+	for(var i=0; i<this.eleList.length; i++){
+		if(i!=0){
+			if(flag){
+			this.eleList[i].style.left = (i-1)*this.smallWidth+this.bigWidth+'px';
+			}else{
+				this.eleList[i].style.left = i*this.smallWidth+'px';
+			}
+		}
+		if(this.eleList[i] == ele){
+			flag = true;
+		}
+	}
+}
+
+RPictures.prototype.mouseoutFunLeft = function(){
+	for(var i=0; i<this.eleList.length; i++){
+		this.eleList[i].style.left = this.normalWidth*i+'px';
+	}
+}
+RPictures.prototype.initWidth = function(){
 	for(var i=0; i<this.eleList.length; i++){
 
 		var elel = this.eleList[i];
@@ -43,7 +95,7 @@ RPictures.prototype.initList = function(){
 		elel.style.float = 'left';
 		elel.style.height = this.divHeight+'px';
 		elel.style.width = this.normalWidth+'px';
-		elel.style.borderRight = this.borderWidth+'px solid #fff';
+		elel.style.borderLeft = this.borderWidth+'px solid #fff';
 		elel.style.overflow = 'hidden';
 		elel.style.transition = 'width '+this.transitionTime+'s';
 		elel.style['-moz-transition'] = 'width '+this.transitionTime+'s';
@@ -65,29 +117,30 @@ RPictures.prototype.initList = function(){
 		elep.style.width = this.bigWidth+'px';
 		elep.style.height = this.divHeight+'px';
 
-		this.mouseoverfun = this.mouseoverFun.bind(this);
+		this.mouseoverfun = this.mouseoverFunWidth.bind(this);
 		elel.addEventListener ? elel.addEventListener("mouseover",this.mouseoverfun , false) : elel.attachEvent("onmouseover",this.mouseoverfun);
 
-		this.mouseoutfun = this.mouseoutFun.bind(this);
+		this.mouseoutfun = this.mouseoutFunWidth.bind(this);
 		elel.addEventListener ? elel.addEventListener("mouseout",this.mouseoutfun, false) : elel.attachEvent("onmouseout",this.mouseoutfun);
 	}
 }
-RPictures.prototype.mouseoverFun = function(e){
+RPictures.prototype.mouseoverFunWidth = function(e){
 	var ele = e.target || e.srcElement;
-	for(var i=0; i<this.eleList.length; i++){
-		this.eleList[i].style.width = this.smallWidth+'px';
-		this.eleList[i].getElementsByTagName('a')[0].style.width = this.smallWidth+'px';
-	}
-
 	while(ele.tagName != 'LI' && ele.tagName != 'BODY'){
 		ele = ele.parentNode;
 	}
-
-	ele.style.width = this.bigWidth+'px';
-	ele.getElementsByTagName('a')[0].style.width = this.bigWidth+'px';
+	for(var i=0; i<this.eleList.length; i++){
+		if(this.eleList[i] == ele){
+			ele.style.width = this.bigWidth+'px';
+			ele.getElementsByTagName('a')[0].style.width = this.bigWidth+'px';
+		}else{
+			this.eleList[i].style.width = this.smallWidth+'px';
+			this.eleList[i].getElementsByTagName('a')[0].style.width = this.smallWidth+'px';
+		}
+	}
 }
 
-RPictures.prototype.mouseoutFun = function(){
+RPictures.prototype.mouseoutFunWidth = function(){
 	for(var i=0; i<this.eleList.length; i++){
 		this.eleList[i].style.width = this.normalWidth+'px';
 		this.eleList[i].getElementsByTagName('a')[0].style.width = this.normalWidth+'px';

@@ -1,0 +1,38 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	/*font-family: 'Open Sans', sans-serif;*/
+}
+.title{
+	width: 100%;
+	background: rgb(238, 238, 238);
+	line-height: 100px;
+}
+.title h4{
+	color: rgb(170, 170, 170);
+	font-size: 32px;
+	font-family: '微软雅黑';
+	margin: 0px;
+	padding: 0 50px;
+}
+#pic, #pic2{
+	margin: 10px auto;
+	border: 1px solid red;
+	padding: 10px;
+}
+
+.information{
+	width: 500px;
+	height: auto;
+	margin: 10px auto;
+	border: 1px solid blue;
+	padding: 10px;
+}
+.information p{
+	font-family: '微软雅黑';
+	font-size: 15px;
+	color: #000;
+}
+.textCenter{
+	text-align: center;
+}

@@ -3,8 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>RollingPictures Demo Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+	<div class="information textCenter">
+		<h1>手风琴式图片效果</h1>
+	</div>
+	<div class="information">
+		<p>通过绝对定位方式实现</p>
+	</div>
 	<div id="pic">
 		<ul>
 			<li>
@@ -34,6 +42,59 @@
 			</li>
 		</ul>
 	</div>
+	<div class="information">
+		<p>通过修改元素width方式实现</p>
+	</div>
+	<div id="pic2">
+		<ul>
+			<li>
+				<a>
+					<img src="imgs/landscapes.jpg">
+				</a>	
+			</li>
+			<li>
+				<a>
+					<img src="imgs/people.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/nature.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/urban.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/abstract.jpg">
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="information">
+		<p>配置项</p>
+		<pre>
+var options = {
+	divHeight : 200,
+	// 最外层div高度
+	divWidth : 500, 
+	//最外层div宽度
+	normalWidth : 100, 
+	// 图片正常显示大小 当divWidth定义时 无作用
+	bigWidth : 310, 
+	// 图片最大化显示大小
+	borderWidth : 2,
+	// 图片右侧边框
+	transitionTime : 2,
+	//动画移动时间
+	type : 'left' 
+	//展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小
+};
+		</pre>
+	</div>
 	<script type="text/javascript" src="RPictures.js"></script>
 	<script type="text/javascript">
 
@@ -41,14 +102,26 @@
 			var options = {
 				divHeight : 200, // 最外层div高度
 				divWidth : 500, //最外层div宽度
-				// normalWidth : 100, // 图片正常显示大小 当divWidth定义时 无作用
+				normalWidth : 100, // 图片正常显示大小 当divWidth定义时 无作用
 				bigWidth : 310, // 图片最大化显示大小
 				borderWidth : 2, // 图片右侧边框
-				transitionTime : 2 //动画移动时间
+				transitionTime : 2, //动画移动时间
+				type : 'left' //展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小
 			};
 
-			console.info(RPictures)
 			var myPictures = new RPictures('pic',options)//两个参数 第一个为操作的div  第二个为配置的属性
+
+			var options2 = {
+				divHeight : 200, // 最外层div高度
+				divWidth : 500, //最外层div宽度
+				normalWidth : 100, // 图片正常显示大小 当divWidth定义时 无作用
+				bigWidth : 310, // 图片最大化显示大小
+				borderWidth : 2, // 图片右侧边框
+				transitionTime : 2, //动画移动时间
+				type : 'width' //展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小
+			};
+
+			var myPictures2 = new RPictures('pic2',options2)//两个参数 第一个为操作的div  第二个为配置的属性
 
 	</script>
 </body>
