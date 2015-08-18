@@ -22,7 +22,7 @@ function RPictures(element, options){
 		this.divWidth = (this.normalWidth + this.borderWidth) * this.eleList.length;
 	}
 	this.smallWidth = parseInt((this.divWidth - this.bigWidth - this.borderWidth)/(this.eleList.length-1)) - this.borderWidth;
-	this.transitionTime = this.options.transitionTime;//options中定义的图片过渡时间
+	this.transitionTime = this.options.transitionTime || 2;//options中定义的图片过渡时间
 
 	this.eleStyle.width = this.divWidth+'px';
 	this.eleStyle.height = this.divHeight+'px';

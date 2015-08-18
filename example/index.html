@@ -3,99 +3,134 @@
 <head>
 	<meta charset="UTF-8">
 	<title>RollingPictures Demo Page</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<div class="blog-masthead">
+		<div class="container">
+			<div class="blog-logo">
+				<a>NNN<span>G</span>TTDD<a>
+			</div>
+			<nav class="blog-nav">
+				<a class="blog-nav-item" href="#"> </a>
+			</nav>
+		</div>
+	</div>
 
-	<div class="information textCenter">
-		<h1>手风琴式图片效果</h1>
-	</div>
-	<div class="information">
-		<p>通过绝对定位方式实现</p>
-	</div>
-	<div id="pic">
-		<ul>
-			<li>
-				<a>
-					<img src="imgs/landscapes.jpg">
-				</a>	
-			</li>
-			<li>
-				<a>
-					<img src="imgs/people.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/nature.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/urban.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/abstract.jpg">
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="information">
-		<p>通过修改元素width方式实现</p>
-	</div>
-	<div id="pic2">
-		<ul>
-			<li>
-				<a>
-					<img src="imgs/landscapes.jpg">
-				</a>	
-			</li>
-			<li>
-				<a>
-					<img src="imgs/people.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/nature.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/urban.jpg">
-				</a>
-			</li>
-			<li>
-				<a>
-					<img src="imgs/abstract.jpg">
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="information">
-		<p>配置项</p>
-		<pre>
-var options = {
-	divHeight : 200,
-	// 最外层div高度
-	divWidth : 500, 
-	//最外层div宽度
-	normalWidth : 100, 
-	// 图片正常显示大小 当divWidth定义时 无作用
-	bigWidth : 310, 
-	// 图片最大化显示大小
-	borderWidth : 2,
-	// 图片右侧边框
-	transitionTime : 2,
-	//动画移动时间
-	type : 'left' 
-	//展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小
-};
-		</pre>
-	</div>
-	<script type="text/javascript" src="RPictures.js"></script>
+	<div class="container">
+		<div class="blog-header">
+			<h1 class="blog-title">手风琴式图片效果</h1>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 blog-main">
+				<div class="blog-post">
+					<p class="blog-post-meta">August 18, 2015 by <a href="#">nnngttdd</a></p>
+					<h2>通过修改元素width方式实现</h2>
+					<div class="blog-example">
+						<div  id="pic2">
+							<ul>
+								<li>
+									<a>
+										<img src="imgs/landscapes.jpg">
+									</a>	
+								</li>
+								<li>
+									<a>
+										<img src="imgs/people.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/nature.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/urban.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/abstract.jpg">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p>开始是通过鼠标时间修改元素的width来实现效果，写完之后发现当快速在图片上移动鼠标，最后一个图片元素会跑到前面，是个bug。后来又换了思路。</p>
+					<h2>通过绝对定位实现</h2>
+					<div class="blog-example">
+						<div  id="pic">
+							<ul>
+								<li>
+									<a>
+										<img src="imgs/landscapes.jpg">
+									</a>	
+								</li>
+								<li>
+									<a>
+										<img src="imgs/people.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/nature.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/urban.jpg">
+									</a>
+								</li>
+								<li>
+									<a>
+										<img src="imgs/abstract.jpg">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p>通过绝对定位的办法，通过鼠标事件，动态修改每个元素距离左侧的距离。暂时不会出现之前的问题。</p>
+					<h2>配置属性</h2>
+					<pre>
+						<code>
+	var options = {
+		divHeight : 200, 
+		// 最外层div高度（与normalWidth二者选一）
+		divWidth : 500, 
+		//最外层div宽度（必填）
+		normalWidth : 100, 
+		// 图片正常显示大小 当divWidth定义时 无作用 （与divHeight二者选一）
+		bigWidth : 310, 
+		// 图片最大化显示大小（必填）
+		borderWidth : 2, 
+		// 图片左侧边框（必填）
+		transitionTime : 2, 
+		//动画移动时间（非必填）
+		type : 'left' 
+		//展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小（非必填）
+	};
+
+	var myPictures = new RPictures('pic',options);
+	//两个参数 第一个为操作的div  第二个为配置的属性
+						</code>
+					</pre>
+				</div><!-- /.blog-post -->
+			</div><!-- /.blog-main -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+
+	<footer class="blog-footer">
+		<p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a>.</p>
+		<p>
+			<a href="#">Back to top</a>
+		</p>
+	</footer>
+	<script type="text/javascript" src="js/libs/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/RPictures.js"></script>
 	<script type="text/javascript">
 
 		//可以添加任何数量的图片<li> 然后设置一下的属性 divWidth 和 normalWidth 二选一
@@ -104,7 +139,7 @@ var options = {
 				divWidth : 500, //最外层div宽度
 				normalWidth : 100, // 图片正常显示大小 当divWidth定义时 无作用
 				bigWidth : 310, // 图片最大化显示大小
-				borderWidth : 2, // 图片右侧边框
+				borderWidth : 2, // 图片左侧边框
 				transitionTime : 2, //动画移动时间
 				type : 'left' //展现的方式 'left'通过绝对定位 ，'width'通过修改元素大小
 			};
