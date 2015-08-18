@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RollingPictures Demo Page</title>
+</head>
+<body>
+	<div id="pic">
+		<ul>
+			<li>
+				<a>
+					<img src="imgs/landscapes.jpg">
+				</a>	
+			</li>
+			<li>
+				<a>
+					<img src="imgs/people.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/nature.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/urban.jpg">
+				</a>
+			</li>
+			<li>
+				<a>
+					<img src="imgs/abstract.jpg">
+				</a>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="RPictures.js"></script>
+	<script type="text/javascript">
+
+		//可以添加任何数量的图片<li> 然后设置一下的属性 divWidth 和 normalWidth 二选一
+			var options = {
+				divHeight : 200, // 最外层div高度
+				divWidth : 500, //最外层div宽度
+				// normalWidth : 100, // 图片正常显示大小 当divWidth定义时 无作用
+				bigWidth : 310, // 图片最大化显示大小
+				borderWidth : 2, // 图片右侧边框
+				transitionTime : 2 //动画移动时间
+			};
+
+			console.info(RPictures)
+			var myPictures = new RPictures('pic',options)//两个参数 第一个为操作的div  第二个为配置的属性
+
+	</script>
+</body>
+</html>
